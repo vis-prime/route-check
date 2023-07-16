@@ -10,18 +10,12 @@ const files = fs.readdirSync(routesDir)
 
 const entries = {}
 
-console.log({ __filename })
-console.log({ __dirname })
-console.log({ files })
-
 files.forEach((file) => {
   const filePath = path.join(routesDir, file)
   const fileName = path.basename(file, path.extname(file))
   entries[fileName] = filePath
 
   const htmlFolderPath = path.join(__dirname, "public")
-  //   console.log({ filePath, fileName, htmlFolderPath })
-  //   fs.mkdirSync(htmlFolderPath, { recursive: true })
 
   const htmlFilePath = path.join(htmlFolderPath, `${fileName}.html`)
   const htmlContent = `<!DOCTYPE html>
@@ -43,3 +37,4 @@ const routesFilePath = path.join(__dirname, "routes.js")
 fs.writeFileSync(routesFilePath, `export default ${JSON.stringify(entries)};`)
 
 console.log(`Routes and HTML files generated at ${routesFilePath}`)
+console.log(`Route files ${files}`)
