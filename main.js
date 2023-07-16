@@ -1,24 +1,30 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import "./style.css"
+import routes from "./routes"
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+// index.js
+// const page1Button = document.getElementById("page1-button")
+// const page2Button = document.getElementById("page2-button")
 
-setupCounter(document.querySelector('#counter'))
+// page1Button.addEventListener("click", () => {
+//   window.location.href = "./page1.html"
+// })
+
+// page2Button.addEventListener("click", () => {
+//   window.location.href = "./page2.html"
+// })
+
+// index.js
+
+document.addEventListener("DOMContentLoaded", () => {
+  const app = document.getElementById("app")
+
+  for (const route in routes) {
+    const routeName = route
+    const button = document.createElement("button")
+    button.textContent = `Go to ${routeName}`
+    button.addEventListener("click", () => {
+      window.location.href = `./${routeName}.html`
+    })
+    app.appendChild(button)
+  }
+})
