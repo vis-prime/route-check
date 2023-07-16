@@ -1,4 +1,4 @@
-/* empty css              *//**
+import"./modulepreload-polyfill-3cfb730f.js";/* empty css              *//**
  * @license
  * Copyright 2010-2023 Three.js Authors
  * SPDX-License-Identifier: MIT
