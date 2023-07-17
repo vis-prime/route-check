@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const button = document.createElement("button")
     button.textContent = `Go to ${routeName}`
     button.addEventListener("click", () => {
-      window.location.href = `./${routeName}.html`
+      window.location.href = `./${routeName}`
     })
     app.appendChild(button)
   }

@@ -13,24 +13,25 @@ const entries = {}
 files.forEach((file) => {
   const filePath = path.join(routesDir, file)
   const fileName = path.basename(file, path.extname(file))
-  entries[fileName] = filePath
+  // entries[fileName] = filePath
 
-  const htmlFolderPath = path.join(__dirname, "public")
+  // const htmlFolderPath = path.join(__dirname, "public")
 
-  const htmlFilePath = path.join(htmlFolderPath, `${fileName}.html`)
+  const htmlFilePath = path.join(__dirname, `${fileName}.html`)
   const htmlContent = `<!DOCTYPE html>
   <html lang="en">
     <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>${fileName}</title>
+      <meta charset="UTF-8" />
+      <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>${getTitle(fileName)}</title>
     </head>
     <body>
-      <h1>${fileName}</h1>
       <script type="module" src="/routes/${fileName}.js"></script>
     </body>
   </html>`
   fs.writeFileSync(htmlFilePath, htmlContent)
+  entries[fileName] = htmlFilePath
 })
 
 const routesFilePath = path.join(__dirname, "routes.js")
@@ -38,3 +39,7 @@ fs.writeFileSync(routesFilePath, `export default ${JSON.stringify(entries)};`)
 
 console.log(`Routes and HTML files generated at ${routesFilePath}`)
 console.log(`Route files ${files}`)
+
+function getTitle(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
